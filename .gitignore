@@ -1,4 +1,4 @@
-﻿################################################################################
+################################################################################
 # This .gitignore file was automatically created by Microsoft(R) Visual Studio.
 ################################################################################
 
@@ -6,3 +6,7 @@
 /Pruebas/.vs
 /Pruebas/bin/Debug/net9.0
 /Pruebas/obj
+Idearia.Pos.WooCommerceTest/.vs/
+Idearia.Pos.WooCommerceTest/bin/
+Idearia.Pos.WooCommerceTest/obj/Idearia.Pos.WooCommerceTest.csproj.nuget.dgspec.json
+Idearia.Pos.WooCommerceTest/obj/
