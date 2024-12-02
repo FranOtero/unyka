@@ -12,6 +12,10 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\Idearia.Pos.TicketPrinter\Idearia.Pos.TicketPrinter.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
     <None Update="Logo.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
