@@ -10,8 +10,9 @@ namespace Idearia.Pos.TicketPrinter
     public class PrinterTicket(Graphics g)
     {
         System.Drawing.Font font = new Font("Courier", 10);
-        int minX = 0;
-        int y = 0;
+        int minX = 10;
+        int _x = 10;
+        int _y = 0;
 
 
         public void SetFont(string fontName)
@@ -28,13 +29,38 @@ namespace Idearia.Pos.TicketPrinter
         }
         public void PrintImage(string path, int x, int width, int height)
         {
-            g.DrawImage(Image.FromFile(path), minX + x, y, width, height);
-            y += height;
+            g.DrawImage(Image.FromFile(path), _x + x, _y, width, height);
+            _y += height;
+        }
+
+        int _y_fin_imagen = 0;
+        public void BeginPrintImage(string path, int x, int width, int height)
+        {
+            g.DrawImage(Image.FromFile(path), _x + x, _y, width, height);
+            _y_fin_imagen = _y + height;
+        }
+        public void EndPrintImage()
+        {
+            _y = Math.Max(_y, _y_fin_imagen);
         }
         public void PrintText(string text)
         {
-            g.DrawString(text, font, new SolidBrush(Color.Black), minX, y);
-            y += (int)font.GetHeight();
+            g.DrawString(text, font, new SolidBrush(Color.Black), _x, _y);
+            _y += (int)font.GetHeight();
+        }
+        public void PrintLine(string pattern)
+        {
+            string l = "";
+            for (int i = 0; i < 200; i++)
+            {
+                l += pattern;
+            }
+            g.DrawString(l, font, new SolidBrush(Color.Black), _x, _y);
+            _y += (int)font.GetHeight();
+        }
+        public void SetMargin(int x)
+        {
+            _x = x + minX;
         }
 
 

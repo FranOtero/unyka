@@ -22,6 +22,10 @@ namespace Idearia.Pos.TicketPrinter
 
         public void CutPaper()
         {
+            // Send line feed commands to add extra space
+            string lineFeedCommand = "\n\n\n"; // Adjust the number of line feeds as needed
+            RawPrinterHelper.SendStringToPrinter(printerName, lineFeedCommand);
+
             // Send cut paper command
             string cutCommand = "\x1B\x69"; // ESC i
             RawPrinterHelper.SendStringToPrinter(printerName, cutCommand);
@@ -30,10 +34,37 @@ namespace Idearia.Pos.TicketPrinter
         private static void PrintPage(object sender, PrintPageEventArgs e)
         {
             PrinterTicket ticket = new PrinterTicket(e.Graphics);
-            ticket.PrintImage("logo.png", 0, 100, 100);
-            ticket.PrintText("Hello, World!");
-            ticket.SetFontStyle(FontStyle.Bold);
-            ticket.PrintText("This is a test ticket.");
+            /*
+                        ticket.BeginPrintImage("logo.png", 0, 100, 100);
+                        ticket.SetMargin(120);
+                        ticket.PrintText("");
+                        ticket.PrintText("Hola, después de una línea");
+                        ticket.PrintText("en blanco a propósito");
+                        ticket.EndPrintImage();
+                        ticket.PrintText("EndPrint se coloca debajo de la imagen");
+                        ticket.SetMargin(0);
+                        ticket.PrintText("Y con SetMargin(0) vuelvo al margen izquierdo");
+
+
+                        //Ejemplo escribir encima y debajo de una imagen
+                        ticket.PrintText("Hola, aquí empeza");
+                        ticket.PrintImage("logo.png", 0, 100, 100); https://symbl.cc/en/unicode-table
+                        ticket.PrintText("Hola, aquí acaba");
+
+                        //Ejemplo imprimir una línea completa con un patrón
+                        ticket.PrintLine("*|");
+
+                        //Ejemplo caracteres especiales
+                        ticket.PrintLine("★");
+                        ticket.PrintLine("☆");
+                        ticket.PrintLine("⁂");
+                        ticket.PrintLine("✨");
+                        ticket.PrintText("← ∙ ∘ ☂ ☀ ☠ ♥ ✔");
+
+                        //Ejemplo cambiar la fuente
+                        ticket.SetFontStyle(FontStyle.Bold);
+                        ticket.PrintText("Texto en negrita");
+                        */
         }
 
     }
