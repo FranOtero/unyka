@@ -5,34 +5,34 @@ namespace Idearia.Pos.TicketPrinter
 {
     public class Printer(string printerName)
     {
-        public void Print()
-        {
+        //public void Print()
+        //{
 
-            RawPrinterHelper.SendStringToPrinter(printerName, "\x1B\x2\x01");
+        //    RawPrinterHelper.SendStringToPrinter(printerName, "\x1B\x2\x01");
 
-            PrintDocument printDocument = new PrintDocument();
-            printDocument.PrintPage += new PrintPageEventHandler(PrintPage);
-            printDocument.PrinterSettings.PrinterName = printerName; // Replace with your printer name
-            printDocument.Print();
-        }
+        //    PrintDocument printDocument = new PrintDocument();
+        //    printDocument.PrintPage += new PrintPageEventHandler(PrintPage);
+        //    printDocument.PrinterSettings.PrinterName = printerName; // Replace with your printer name
+        //    printDocument.Print();
+        //}
 
-        public void OpenCashDrawer()
-        {
-            // Send open cash drawer command
-            string openCashDrawerCommand = "\x1B\x70\x00\x19\xFA"; // ESC p 0 25 250
-            RawPrinterHelper.SendStringToPrinter(printerName, openCashDrawerCommand);
-        }
+        //public void OpenCashDrawer()
+        //{
+        //    // Send open cash drawer command
+        //    string openCashDrawerCommand = "\x1B\x70\x00\x19\xFA"; // ESC p 0 25 250
+        //    RawPrinterHelper.SendStringToPrinter(printerName, openCashDrawerCommand);
+        //}
 
-        public void CutPaper()
-        {
-            // Send line feed commands to add extra space
-            string lineFeedCommand = "\n\n\n"; // Adjust the number of line feeds as needed
-            RawPrinterHelper.SendStringToPrinter(printerName, lineFeedCommand);
+        //public void CutPaper()
+        //{
+        //    // Send line feed commands to add extra space
+        //    string lineFeedCommand = "\n\n\n"; // Adjust the number of line feeds as needed
+        //    RawPrinterHelper.SendStringToPrinter(printerName, lineFeedCommand);
 
-            // Send cut paper command
-            string cutCommand = "\x1B\x69"; // ESC i
-            RawPrinterHelper.SendStringToPrinter(printerName, cutCommand);
-        }
+        //    // Send cut paper command
+        //    string cutCommand = "\x1B\x69"; // ESC i
+        //    RawPrinterHelper.SendStringToPrinter(printerName, cutCommand);
+        //}
 
         private void PrintPage(object sender, PrintPageEventArgs e)
         {
@@ -43,7 +43,7 @@ namespace Idearia.Pos.TicketPrinter
 
             ticket.PrintText("11111lllll11111lllll");
             ticket.PrintText("OOOOO88888RRRRRTTTTT");
-            RawPrinterHelper.SendStringToPrinter(printerName, "\n\n\n");
+            //RawPrinterHelper.SendStringToPrinter(printerName, "\n\n\n");
 
             return;
 

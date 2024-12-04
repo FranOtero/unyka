@@ -19,6 +19,7 @@ namespace Idearia.Pos.TicketPrinter
             RawPrinterHelper.SendStringToPrinter("\x1B\x61\x01");
             RawPrinterHelper.SendStringToPrinter(v + "\n");
             RawPrinterHelper.SendStringToPrinter("\x1B\x61\x00");
+            RawPrinterHelper.SendStringToPrinter("\x1B\x21\x00");
         }
 
         public static void WriteTitle(string v)
@@ -27,16 +28,19 @@ namespace Idearia.Pos.TicketPrinter
             RawPrinterHelper.SendStringToPrinter("\x1B\x61\x01");
             RawPrinterHelper.SendStringToPrinter(v + "\n");
             RawPrinterHelper.SendStringToPrinter("\x1B\x61\x00");
+
+            RawPrinterHelper.SendStringToPrinter("\x1B\x21\x00");
         }
 
-        public static void Write(string v)
+        public static void WriteText(string v)
         {
-            RawPrinterHelper.SendStringToPrinter("\x1B\x21\x00");
+            
             RawPrinterHelper.SendStringToPrinter(v + "\n");
         }
         public static void CutPaper()
         {
-            RawPrinterHelper.SendStringToPrinter("\n\n\x1B\x69"); // ESC i
+            RawPrinterHelper.SendStringToPrinter("\n\n\n"); // ESC i
+            RawPrinterHelper.SendStringToPrinter("\x1B\x69"); // ESC i
         }
     }
 }
