@@ -1,15 +1,30 @@
 ﻿// See https://aka.ms/new-console-template for more information
 using Idearia.Pos.TicketPrinter;
+using System.Security.AccessControl;
 string printerName = "POS-80C";
 
 
+string facturasimplificada = "688767867868";
+string fecha = "04/12/2024  17:17";
+string producto = "leite";
+string importe = "4";
+
 
 Unyka.SetName(printerName);
+Unyka.Logo("");
 Unyka.WriteTitle("O BOTICARIO");
-Unyka.WriteCentered("DFDASAFS");
-Unyka.WriteText("Dirección, código postal");
+Unyka.EmptyLines(1);
+Unyka.WriteCentered("O boticario II");
+Unyka.WriteText("Dirección, código postal", "teléfono");
 Unyka.WriteText("CIF");
-Unyka.WriteText("teléfono");
+Unyka.WriteText("factura simplificada: " + facturasimplificada, fecha);
+Unyka.WriteLine(1);
+Unyka.WriteText("Descripción", "importe");
+Unyka.WriteText(producto, importe + "€");
+Unyka.WriteText("", TextAlign.Right);
+
+
+
 Unyka.CutPaper();
 
 
