@@ -1,27 +1,30 @@
 ﻿// See https://aka.ms/new-console-template for more information
 using Idearia.Pos.TicketPrinter;
+using System.Security.AccessControl;
 string printerName = "POS-80C";
 
 
+string facturasimplificada = "688767867868";
+string fecha = "04/12/2024  17:17";
+string producto = "leite";
+string importe = "4";
+
 
 Unyka.SetName(printerName);
-//Unyka.WriteText("Caja 1");
-//Unyka.WriteText("Caja 1");
-//Unyka.WriteText("\n\n\n");
-//Unyka.WriteText("Caja 1");
-//Unyka.WriteText("Caja 1");
-//Unyka.WriteText("Caja 1");
+Unyka.Logo("");
+Unyka.WriteTitle("O BOTICARIO");
+Unyka.EmptyLines(1);
+Unyka.WriteCentered("O boticario II");
+Unyka.WriteText("Dirección, código postal", "teléfono");
+Unyka.WriteText("CIF");
+Unyka.WriteText("factura simplificada: " + facturasimplificada, fecha);
+Unyka.WriteLine(1);
+Unyka.WriteText("Descripción", "importe");
+Unyka.WriteText(producto, importe + "€");
+Unyka.WriteText("", TextAlign.Right);
 
-////Unyka.WriteTitle("O BOTICARIO");
-////Unyka.WriteCentered("DFDASAFS");
-////Unyka.WriteText("Dirección, código postal");
-////Unyka.WriteText("CIF");
-////Unyka.WriteText("teléfono");
-Unyka.WriteText("Caja 1");
-RawPrinterHelper.SendStringToPrinter("\n\n\n");
-Unyka.WriteText("Caja 2");
-RawPrinterHelper.SendStringToPrinter("\n\n\n");
-//RawPrinterHelper.SendStringToPrinter(" ");
+
+
 Unyka.CutPaper();
 
 
