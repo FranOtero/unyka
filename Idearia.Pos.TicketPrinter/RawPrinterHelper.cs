@@ -5,6 +5,8 @@ namespace Idearia.Pos.TicketPrinter
 {
     internal class RawPrinterHelper
     {
+        internal static string _printerName;
+
         [StructLayout(LayoutKind.Sequential, CharSet = CharSet.Ansi)]
         public class DOCINFOA
         {
@@ -37,17 +39,17 @@ namespace Idearia.Pos.TicketPrinter
         [DllImport("winspool.Drv", EntryPoint = "WritePrinter", SetLastError = true, ExactSpelling = true, CallingConvention = CallingConvention.StdCall)]
         public static extern bool WritePrinter(IntPtr hPrinter, IntPtr pBytes, int dwCount, out int dwWritten);
 
-        public static bool SendStringToPrinter(string szPrinterName, string szString)
+        public static bool SendStringToPrinter(string szString)
         {
             IntPtr pBytes;
             int dwCount = szString.Length;
             pBytes = Marshal.StringToCoTaskMemAnsi(szString);
-            bool success = SendBytesToPrinter(szPrinterName, pBytes, dwCount);
+            bool success = SendBytesToPrinter(pBytes, dwCount);
             Marshal.FreeCoTaskMem(pBytes);
             return success;
         }
 
-        public static bool SendBytesToPrinter(string szPrinterName, IntPtr pBytes, int dwCount)
+        public static bool SendBytesToPrinter(IntPtr pBytes, int dwCount)
         {
             IntPtr hPrinter;
             DOCINFOA di = new DOCINFOA
@@ -56,7 +58,7 @@ namespace Idearia.Pos.TicketPrinter
                 pDataType = "RAW"
             };
             bool success = false;
-            if (OpenPrinter(szPrinterName.Normalize(), out hPrinter, IntPtr.Zero))
+            if (OpenPrinter(_printerName.Normalize(), out hPrinter, IntPtr.Zero))
             {
                 if (StartDocPrinter(hPrinter, 1, di))
                 {

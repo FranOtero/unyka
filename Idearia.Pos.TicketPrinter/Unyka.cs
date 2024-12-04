@@ -10,17 +10,33 @@ namespace Idearia.Pos.TicketPrinter
     {
         public static void SetName(string printerName)
         {
-            throw new NotImplementedException();
+            RawPrinterHelper._printerName = printerName;
         }
 
         public static void WriteCentered(string v)
         {
-            throw new NotImplementedException();
+            RawPrinterHelper.SendStringToPrinter("\x1B\x21\x16");
+            RawPrinterHelper.SendStringToPrinter("\x1B\x61\x01");
+            RawPrinterHelper.SendStringToPrinter(v + "\n");
+            RawPrinterHelper.SendStringToPrinter("\x1B\x61\x00");
         }
 
         public static void WriteTitle(string v)
         {
-            throw new NotImplementedException();
+            RawPrinterHelper.SendStringToPrinter("\x1B\x21\x16");
+            RawPrinterHelper.SendStringToPrinter("\x1B\x61\x01");
+            RawPrinterHelper.SendStringToPrinter(v + "\n");
+            RawPrinterHelper.SendStringToPrinter("\x1B\x61\x00");
+        }
+
+        public static void Write(string v)
+        {
+            RawPrinterHelper.SendStringToPrinter("\x1B\x21\x00");
+            RawPrinterHelper.SendStringToPrinter(v + "\n");
+        }
+        public static void CutPaper()
+        {
+            RawPrinterHelper.SendStringToPrinter("\n\n\x1B\x69"); // ESC i
         }
     }
 }
