@@ -33,9 +33,8 @@ namespace Idearia.Pos.TicketPrinter
             RawPrinterHelper.SendStringToPrinter("\x1B\x21\x00");
         }
 
-        public static void WriteText(string v)
+        public static void WriteText(string v, TextAlign textAlign = TextAlign.Left)
         {
-
             RawPrinterHelper.SendStringToPrinter(v + "\n");
         }
         public static void CutPaper()
@@ -65,14 +64,9 @@ namespace Idearia.Pos.TicketPrinter
             RawPrinterHelper.SendStringToPrinter($"{line}\x09 {right}\n");
         }
 
-        public static void WriteLine(int v)
+        public static void WriteLine()
         {
-            RawPrinterHelper.SendStringToPrinter("_____________________________________");
-        }
-
-        public static void WriteText(object producto, object value)
-        {
-            throw new NotImplementedException();
+            WriteCentered("_____________________________________\n");
         }
 
         public static void WriteTaxLine(string v1, string v2, string v3, string v4)
