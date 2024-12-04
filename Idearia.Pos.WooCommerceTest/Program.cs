@@ -8,7 +8,9 @@ string facturasimplificada = "688767867868";
 string fecha = "04/12/2024  17:17";
 string producto = "leite";
 string importe = "4";
-
+string importetotal = "4";
+string importeefectivo = "1";
+string importetarjeta = "3";
 
 Unyka.SetName(printerName);
 Unyka.Logo("");
@@ -18,10 +20,18 @@ Unyka.WriteCentered("O boticario II");
 Unyka.WriteText("Dirección, código postal", "teléfono");
 Unyka.WriteText("CIF");
 Unyka.WriteText("factura simplificada: " + facturasimplificada, fecha);
-Unyka.WriteLine(1);
+Unyka.WriteLine();
 Unyka.WriteText("Descripción", "importe");
+Unyka.WriteLine(); 
 Unyka.WriteText(producto, importe + "€");
-Unyka.WriteText("", TextAlign.Right);
+Unyka.WriteText("Total: " + importetotal + "€", TextAlign.Right, enphasized);
+Unyka.WriteText("Efectivo: " + importeefectivo + "€", TextAlign.Right);
+Unyka.WriteText("Tarjeta: " + importetarjeta + "€", TextAlign.Right);
+Unyka.EmptyLines(1)
+Unyka.WriteTaxLine("2,00%", "3,50", "0,07", "3,57")
+Unyka.EmptyLines(1)
+Unyka.WriteText("Atendido por: ")
+Unyka.WriteCentered("Gracias por su visita.")
 
 Unyka.CutPaper();
 
