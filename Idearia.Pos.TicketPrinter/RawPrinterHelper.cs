@@ -39,14 +39,38 @@ namespace Idearia.Pos.TicketPrinter
         [DllImport("winspool.Drv", EntryPoint = "WritePrinter", SetLastError = true, ExactSpelling = true, CallingConvention = CallingConvention.StdCall)]
         public static extern bool WritePrinter(IntPtr hPrinter, IntPtr pBytes, int dwCount, out int dwWritten);
 
-        public static bool SendStringToPrinter(string szString)
+        public static bool SendCommand(string szCommand)
         {
             IntPtr pBytes;
-            int dwCount = szString.Length;
-            pBytes = Marshal.StringToCoTaskMemAnsi(szString);
+            int dwCount;
+
+            if (buffer.Length > 0)
+            {
+                dwCount = buffer.Length;
+                pBytes = Marshal.StringToCoTaskMemAnsi(buffer);
+                SendBytesToPrinter(pBytes, dwCount);
+                Marshal.FreeCoTaskMem(pBytes);
+                buffer = "";
+            }
+
+            dwCount = szCommand.Length;
+            pBytes = Marshal.StringToCoTaskMemAnsi(szCommand);
             bool success = SendBytesToPrinter(pBytes, dwCount);
             Marshal.FreeCoTaskMem(pBytes);
             return success;
+        }
+
+        static string buffer = "";
+        public static bool SendString(string szString)
+        {
+            szString = szString
+                .Replace("á", "a")
+                .Replace("é", "e")
+                .Replace("í", "i")
+                .Replace("ó", "o")
+                .Replace("ú", "u");
+            buffer += szString;
+            return true;
         }
 
         public static bool SendBytesToPrinter(IntPtr pBytes, int dwCount)

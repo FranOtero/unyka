@@ -11,41 +11,42 @@ namespace Idearia.Pos.TicketPrinter
         public static void SetName(string printerName)
         {
             RawPrinterHelper._printerName = printerName;
-            RawPrinterHelper.SendStringToPrinter("\x1B\x52\x0B"); // ESC R 11
+            RawPrinterHelper.SendCommand("\x1B\x52\x0B"); // ESC R 11
+            RawPrinterHelper.SendCommand("\x1B\x44\x28\x01\x00"); // ESC D 40 1 0 (tabulador)
         }
 
         public static void WriteCentered(string v)
         {
-            RawPrinterHelper.SendStringToPrinter("\x1B\x21\x16");
-            RawPrinterHelper.SendStringToPrinter("\x1B\x61\x01");
-            RawPrinterHelper.SendStringToPrinter(v + "\n");
-            RawPrinterHelper.SendStringToPrinter("\x1B\x61\x00");
-            RawPrinterHelper.SendStringToPrinter("\x1B\x21\x00");
+            RawPrinterHelper.SendCommand("\x1B\x21\x16");
+            RawPrinterHelper.SendCommand("\x1B\x61\x01");
+            RawPrinterHelper.SendString(v + "\n");
+            RawPrinterHelper.SendCommand("\x1B\x61\x00");
+            RawPrinterHelper.SendCommand("\x1B\x21\x00");
         }
 
         public static void WriteTitle(string v)
         {
-            RawPrinterHelper.SendStringToPrinter("\x1B\x21\x16");
-            RawPrinterHelper.SendStringToPrinter("\x1B\x61\x01");
-            RawPrinterHelper.SendStringToPrinter(v + "\n");
-            RawPrinterHelper.SendStringToPrinter("\x1B\x61\x00");
+            RawPrinterHelper.SendCommand("\x1B\x21\x16");
+            RawPrinterHelper.SendCommand("\x1B\x61\x01");
+            RawPrinterHelper.SendString(v + "\n");
+            RawPrinterHelper.SendCommand("\x1B\x61\x00");
 
-            RawPrinterHelper.SendStringToPrinter("\x1B\x21\x00");
+            RawPrinterHelper.SendCommand("\x1B\x21\x00");
         }
 
         public static void WriteText(string v, TextAlign textAlign = TextAlign.Left)
         {
-            RawPrinterHelper.SendStringToPrinter(v + "\n");
+            RawPrinterHelper.SendString(v + "\n");
         }
         public static void CutPaper()
         {
-            RawPrinterHelper.SendStringToPrinter("\n\n\n");
-            RawPrinterHelper.SendStringToPrinter("\x1B\x69"); // ESC i
+            RawPrinterHelper.SendString("\n\n\n");
+            RawPrinterHelper.SendCommand("\x1B\x69"); // ESC i
         }
 
         public static void Logo(string v)
         {
-            RawPrinterHelper.SendStringToPrinter("Los logos no sale por ahora");
+            RawPrinterHelper.SendString("Los logos no sale por ahora");
         }
 
         public static void EmptyLines(int v)
@@ -55,23 +56,22 @@ namespace Idearia.Pos.TicketPrinter
             {
                 a += "\n";
             }
-            RawPrinterHelper.SendStringToPrinter(a);
+            RawPrinterHelper.SendString(a);
         }
 
         public static void WriteText(string line, string right)
         {
-            RawPrinterHelper.SendStringToPrinter("\x1B\x44\x28\x01\x00");
-            RawPrinterHelper.SendStringToPrinter($"{line}\x09 {right}\n");
+            RawPrinterHelper.SendString($"{line}\x09 {right}\n");
         }
 
         public static void WriteLine()
         {
-            WriteCentered("_____________________________________\n");
+            WriteCentered("______________________________________________\n");
         }
 
-        public static void WriteTaxLine(string v1, string v2, string v3, string v4)
+        public static void WriteTaxLine(decimal v1, decimal v2, decimal v3, decimal v4)
         {
-            throw new NotImplementedException();
+            RawPrinterHelper.SendString($"{v1:F2}%  {v2:F2}  {v3:F2}  {v4:F2} \n");
         }
     }
 

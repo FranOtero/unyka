@@ -28,11 +28,10 @@ Unyka.WriteText("Total: " + importetotal + "€", TextAlign.Right);
 Unyka.WriteText("Efectivo: " + importeefectivo + "€", TextAlign.Right);
 Unyka.WriteText("Tarjeta: " + importetarjeta + "€", TextAlign.Right);
 Unyka.EmptyLines(1);
-Unyka.WriteTaxLine(2.00 %, 3.50, 0.07, 3.57);
+Unyka.WriteTaxLine(2.00m, 3.50m, 0.07m, 3.57m);
 Unyka.EmptyLines(1);
 Unyka.WriteText("Atendido por: ");
 Unyka.WriteCentered("Gracias por su visita.");
-
 Unyka.CutPaper();
 
 

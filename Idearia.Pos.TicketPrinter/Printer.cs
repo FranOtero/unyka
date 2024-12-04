@@ -1,10 +1,28 @@
 ﻿using System.Drawing;
 using System.Drawing.Printing;
+using System.IO;
 
 namespace Idearia.Pos.TicketPrinter
 {
-    public class Printer(string printerName)
+    public static class Printer
     {
+
+        public static void PrintLogo(string path, int size)
+        {
+            PrintDocument printDocument = new PrintDocument();
+            printDocument.PrintPage += (sender, e) =>
+            {
+                e.Graphics.DrawImage(Image.FromFile(path), 0, 0, size, size);
+            };
+            //printDocument.PrinterSettings.PrinterName = printerName; // Replace with your printer name
+            printDocument.Print();
+        }
+
+        private static void PrintDocument_PrintPage(object sender, PrintPageEventArgs e)
+        {
+            throw new NotImplementedException();
+        }
+
         //public void Print()
         //{
 
@@ -34,71 +52,14 @@ namespace Idearia.Pos.TicketPrinter
         //    RawPrinterHelper.SendStringToPrinter(printerName, cutCommand);
         //}
 
-        private void PrintPage(object sender, PrintPageEventArgs e)
-        {
-            PrinterTicket ticket = new PrinterTicket(e.Graphics);
+        //private void PrintPage(object sender, PrintPageEventArgs e)
+        //{
+        //    PrinterTicket ticket = new PrinterTicket(e.Graphics);
+        //    g.DrawImage(Image.FromFile(path), _x + x, _y, width, height);
+        //    //RawPrinterHelper.SendStringToPrinter(printerName, "\n\n\n");
 
-            ticket.PrintText("Aquí ña yo $ €!\r\n");
-            ticket.PrintText("OOOOO88888RRRRRTTTTT");
-
-            ticket.PrintText("11111lllll11111lllll");
-            ticket.PrintText("OOOOO88888RRRRRTTTTT");
-            //RawPrinterHelper.SendStringToPrinter(printerName, "\n\n\n");
-
-            return;
-
-            ticket.SetFont("Courier");
-            ticket.PrintText("Courier 0123456789 % € 1,2.3 á é í ó ú");
-            ticket.PrintText("11111lllll11111lllll");
-            ticket.PrintText("OOOOO88888RRRRRTTTTT");
-
-            ticket.SetFont("Arial");
-            ticket.PrintText("Arial 0123456789 % € 1,2.3 á é í ó ú");
-            ticket.PrintText("11111lllll11111lllll");
-            ticket.PrintText("OOOOO88888RRRRRTTTTT");
-
-            ticket.SetFont("Consolas");
-            ticket.PrintText("Consolas 0123456789 % € 1,2.3 á é í ó ú");
-            ticket.PrintText("11111lllll11111lllll");
-            ticket.PrintText("OOOOO88888RRRRRTTTTT");
-
-            ticket.SetFont("Cousine");
-            ticket.PrintText("Cousine 0123456789 % € 1,2.3 á é í ó ú");
-            ticket.PrintText("11111lllll11111lllll");
-            ticket.PrintText("OOOOO88888RRRRRTTTTT");
-
-
-            //ticket.BeginPrintImage("logo.png", 0, 100, 100);
-            //ticket.SetMargin(120);
-            //ticket.PrintText("");
-            //ticket.PrintText("Hola, después de una línea");
-            //ticket.PrintText("en blanco a propósito");
-            //ticket.EndPrintImage();
-            //ticket.PrintText("EndPrint se coloca debajo de la imagen");
-            //ticket.SetMargin(0);
-            //ticket.PrintText("Y con SetMargin(0) vuelvo al margen izquierdo");
-
-
-            ////Ejemplo escribir encima y debajo de una imagen
-            //ticket.PrintText("Hola, aquí empeza");
-            //ticket.PrintImage("logo.png", 0, 100, 100); https://symbl.cc/en/unicode-table
-            //ticket.PrintText("Hola, aquí acaba");
-
-            ////Ejemplo imprimir una línea completa con un patrón
-            //ticket.PrintLine("*|");
-
-            ////Ejemplo caracteres especiales
-            //ticket.PrintLine("★");
-            //ticket.PrintLine("☆");
-            //ticket.PrintLine("⁂");
-            //ticket.PrintLine("✨");
-            //ticket.PrintText("← ∙ ∘ ☂ ☀ ☠ ♥ ✔");
-
-            ////Ejemplo cambiar la fuente
-            //ticket.SetFontStyle(FontStyle.Bold);
-            //ticket.PrintText("Texto en negrita");
-
-        }
+        //    return;
+        //}
 
     }
 }
