@@ -70,6 +70,15 @@ namespace Idearia.Pos.TicketPrinter
             RawPrinterHelper.SendStringToPrinter("_____________________________________");
         }
 
+        public static void WriteText(object producto, object value)
+        {
+            throw new NotImplementedException();
+        }
+
+        public static void WriteTaxLine(string v1, string v2, string v3, string v4)
+        {
+            throw new NotImplementedException();
+        }
     }
 
     public enum TextAlign
