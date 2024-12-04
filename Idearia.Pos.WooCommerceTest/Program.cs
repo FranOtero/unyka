@@ -16,6 +16,7 @@ decimal importetarjeta = 23.5m;
 string vendedor = "Oscar";
 
 Unyka.SetName(printerName);
+
 Unyka.Logo("LogoB.png", 80);
 Unyka.WriteText("O Boticario CBD S. Coop. Galega", TextAlign.Center);
 Unyka.WriteText("Ctra. de Camposancos, 223, Coruxo, 36330 - Vigo");
@@ -26,10 +27,10 @@ Unyka.EmptyLines(1);
 Unyka.WriteText("Factura simplificada: " + facturasimplificada, TextAlign.Center);
 Unyka.WriteLine();
 Unyka.WriteText(producto);
-Unyka.WriteText($"          3 x {importe:c2} = {importe:c2}");
+Unyka.WriteText($"            3 x {importe:c2} = {importe:c2}");
 Unyka.WriteText(producto2);
-Unyka.WriteText($"          3 x {importe2:c2} = {importe2:c2}");
-
+Unyka.WriteText($"            3 x {importe2:c2} = {importe2:c2}");
+Unyka.EmptyLines(1);
 
 Unyka.WriteText("Total: " + $"{importetotal:c2}", TextAlign.Right);
 Unyka.WriteText("Efectivo: " + $"{importeefectivo:c2}", TextAlign.Right);

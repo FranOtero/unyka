@@ -69,8 +69,7 @@ namespace Idearia.Pos.TicketPrinter
                 .Replace("í", "i")
                 .Replace("ó", "o")
                 .Replace("ú", "u")
-                .Replace("ñ", "n")
-                .Replace("@", "·");
+                .Replace("ñ", "n");
             buffer += szString;
             return true;
         }

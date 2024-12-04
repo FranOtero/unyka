@@ -10,7 +10,7 @@ namespace Idearia.Pos.TicketPrinter
         public static void SetName(string printerName)
         {
             RawPrinterHelper._printerName = printerName;
-            RawPrinterHelper.SendCommand("\x1B\x52\x0B"); // ESC R 11
+            RawPrinterHelper.SendCommand("\x1B\x52\x07"); // ESC R 7 Pais españa
             RawPrinterHelper.SendCommand("\x1B\x44\x22\x01\x00"); // ESC D 32 1 0 (tabulador)
         }
 
