@@ -5,8 +5,11 @@ string printerName = "POS-80C";
 
 
 Unyka.SetName(printerName);
-Unyka.WriteTitle("FROIZ");
+Unyka.WriteTitle("O BOTICARIO");
 Unyka.WriteCentered("DFDASAFS");
+Unyka.WriteText("Dirección, código psotal");
+Unyka.WriteText("CIF");
+Unyka.WriteText("teléfono");
 
 
 
