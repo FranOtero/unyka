@@ -7,6 +7,9 @@ namespace Idearia.Pos.TicketPrinter
     {
         public void Print()
         {
+
+            RawPrinterHelper.SendStringToPrinter(printerName, "\x1B\x2\x01");
+
             PrintDocument printDocument = new PrintDocument();
             printDocument.PrintPage += new PrintPageEventHandler(PrintPage);
             printDocument.PrinterSettings.PrinterName = printerName; // Replace with your printer name
@@ -31,61 +34,70 @@ namespace Idearia.Pos.TicketPrinter
             RawPrinterHelper.SendStringToPrinter(printerName, cutCommand);
         }
 
-        private static void PrintPage(object sender, PrintPageEventArgs e)
+        private void PrintPage(object sender, PrintPageEventArgs e)
         {
             PrinterTicket ticket = new PrinterTicket(e.Graphics);
-            /*
-                        ticket.SetFont("Courier");
-                        ticket.PrintText("Courier 0123456789 % € 1,2.3 á é í ó ú");
-                        ticket.PrintText("11111lllll11111lllll");
-                        ticket.PrintText("OOOOO88888RRRRRTTTTT");
 
-                        ticket.SetFont("Arial");
-                        ticket.PrintText("Arial 0123456789 % € 1,2.3 á é í ó ú");
-                        ticket.PrintText("11111lllll11111lllll");
-                        ticket.PrintText("OOOOO88888RRRRRTTTTT");
+            ticket.PrintText("Aquí ña yo $ €!\r\n");
+            ticket.PrintText("OOOOO88888RRRRRTTTTT");
 
-                        ticket.SetFont("Consolas");
-                        ticket.PrintText("Consolas 0123456789 % € 1,2.3 á é í ó ú");
-                        ticket.PrintText("11111lllll11111lllll");
-                        ticket.PrintText("OOOOO88888RRRRRTTTTT");
+            ticket.PrintText("11111lllll11111lllll");
+            ticket.PrintText("OOOOO88888RRRRRTTTTT");
+            RawPrinterHelper.SendStringToPrinter(printerName, "\n\n\n");
 
-                        ticket.SetFont("Cousine");
-                        ticket.PrintText("Cousine 0123456789 % € 1,2.3 á é í ó ú");
-                        ticket.PrintText("11111lllll11111lllll");
-                        ticket.PrintText("OOOOO88888RRRRRTTTTT");
+            return;
 
+            ticket.SetFont("Courier");
+            ticket.PrintText("Courier 0123456789 % € 1,2.3 á é í ó ú");
+            ticket.PrintText("11111lllll11111lllll");
+            ticket.PrintText("OOOOO88888RRRRRTTTTT");
 
-                                    ticket.BeginPrintImage("logo.png", 0, 100, 100);
-                                    ticket.SetMargin(120);
-                                    ticket.PrintText("");
-                                    ticket.PrintText("Hola, después de una línea");
-                                    ticket.PrintText("en blanco a propósito");
-                                    ticket.EndPrintImage();
-                                    ticket.PrintText("EndPrint se coloca debajo de la imagen");
-                                    ticket.SetMargin(0);
-                                    ticket.PrintText("Y con SetMargin(0) vuelvo al margen izquierdo");
+            ticket.SetFont("Arial");
+            ticket.PrintText("Arial 0123456789 % € 1,2.3 á é í ó ú");
+            ticket.PrintText("11111lllll11111lllll");
+            ticket.PrintText("OOOOO88888RRRRRTTTTT");
+
+            ticket.SetFont("Consolas");
+            ticket.PrintText("Consolas 0123456789 % € 1,2.3 á é í ó ú");
+            ticket.PrintText("11111lllll11111lllll");
+            ticket.PrintText("OOOOO88888RRRRRTTTTT");
+
+            ticket.SetFont("Cousine");
+            ticket.PrintText("Cousine 0123456789 % € 1,2.3 á é í ó ú");
+            ticket.PrintText("11111lllll11111lllll");
+            ticket.PrintText("OOOOO88888RRRRRTTTTT");
 
 
-                                    //Ejemplo escribir encima y debajo de una imagen
-                                    ticket.PrintText("Hola, aquí empeza");
-                                    ticket.PrintImage("logo.png", 0, 100, 100); https://symbl.cc/en/unicode-table
-                                    ticket.PrintText("Hola, aquí acaba");
+            //ticket.BeginPrintImage("logo.png", 0, 100, 100);
+            //ticket.SetMargin(120);
+            //ticket.PrintText("");
+            //ticket.PrintText("Hola, después de una línea");
+            //ticket.PrintText("en blanco a propósito");
+            //ticket.EndPrintImage();
+            //ticket.PrintText("EndPrint se coloca debajo de la imagen");
+            //ticket.SetMargin(0);
+            //ticket.PrintText("Y con SetMargin(0) vuelvo al margen izquierdo");
 
-                                    //Ejemplo imprimir una línea completa con un patrón
-                                    ticket.PrintLine("*|");
 
-                                    //Ejemplo caracteres especiales
-                                    ticket.PrintLine("★");
-                                    ticket.PrintLine("☆");
-                                    ticket.PrintLine("⁂");
-                                    ticket.PrintLine("✨");
-                                    ticket.PrintText("← ∙ ∘ ☂ ☀ ☠ ♥ ✔");
+            ////Ejemplo escribir encima y debajo de una imagen
+            //ticket.PrintText("Hola, aquí empeza");
+            //ticket.PrintImage("logo.png", 0, 100, 100); https://symbl.cc/en/unicode-table
+            //ticket.PrintText("Hola, aquí acaba");
 
-                                    //Ejemplo cambiar la fuente
-                                    ticket.SetFontStyle(FontStyle.Bold);
-                                    ticket.PrintText("Texto en negrita");
-                                    */
+            ////Ejemplo imprimir una línea completa con un patrón
+            //ticket.PrintLine("*|");
+
+            ////Ejemplo caracteres especiales
+            //ticket.PrintLine("★");
+            //ticket.PrintLine("☆");
+            //ticket.PrintLine("⁂");
+            //ticket.PrintLine("✨");
+            //ticket.PrintText("← ∙ ∘ ☂ ☀ ☠ ♥ ✔");
+
+            ////Ejemplo cambiar la fuente
+            //ticket.SetFontStyle(FontStyle.Bold);
+            //ticket.PrintText("Texto en negrita");
+
         }
 
     }

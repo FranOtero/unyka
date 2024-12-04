@@ -9,9 +9,9 @@ namespace Idearia.Pos.TicketPrinter
 {
     public class PrinterTicket(Graphics g)
     {
-        System.Drawing.Font font = new Font("Consolas", 10);
-        int minX = 10;
-        int _x = 10;
+        System.Drawing.Font font = new Font("Ticketing", 10);
+        const int minX = 5;
+        int _x = minX;
         int _y = 0;
 
 
