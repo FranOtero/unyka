@@ -1,43 +1,44 @@
 ﻿// See https://aka.ms/new-console-template for more information
 using Idearia.Pos.TicketPrinter;
+using System.Runtime.InteropServices;
 using System.Security.AccessControl;
 string printerName = "POS-80C";
 
 
 string facturasimplificada = "688767867868";
-string fecha = "04/12/2024  17:17";
-string producto = "Annabis Footcann crema nutritiva pies secos 75ml";
-string producto2 = "Annabis BIO Hemp Oil - Aceite de cáñamo certificado ecológico 500ml"; 
-string importe = "8.5";
-string importe2 = "23.5"; 
-string importetotal = "32";
-string importeefectivo = "8.5";
-string importetarjeta = "23.5";
+string producto = "Annabis Footcann 75ml";
+string producto2 = "Annabis BIO Hemp Oil - Aceite de cáñamo certificado ecológico 500ml";
+decimal importe = 2128.52m;
+decimal importe2 = 23.5m;
+decimal importetotal = 32m;
+decimal importeefectivo = 8.5m;
+decimal importetarjeta = 23.5m;
 string vendedor = "Oscar";
 
 Unyka.SetName(printerName);
-Unyka.Logo("");
-Unyka.WriteTitle("O BOTICARIO");
-Unyka.EmptyLines(1);
-Unyka.WriteCentered("O Boticario CBD S. Coop. Galega");
-Unyka.WriteText("NIF F75401158"); 
+Unyka.Logo("LogoB.png", 80);
+Unyka.WriteText("O Boticario CBD S. Coop. Galega", TextAlign.Center);
 Unyka.WriteText("Ctra. de Camposancos, 223, Coruxo, 36330 - Vigo");
+Unyka.WriteText("NIF F75401158");
 Unyka.WriteText("Tfno. 622298710");
-Unyka.WriteText("factura simplificada: " + facturasimplificada);
-Unyka.WriteText(fecha);
-Unyka.WriteLine(1);
-Unyka.WriteText("Descripción", "importe");
+Unyka.WriteText("info@oboticariocbdvigo.es       " + DateTime.Now.ToString("dd/MM/yyyy HH:mm"));
+Unyka.EmptyLines(1);
+Unyka.WriteText("Factura simplificada: " + facturasimplificada, TextAlign.Center);
 Unyka.WriteLine();
-Unyka.WriteText(producto, importe + "€");
-Unyka.WriteText(producto2, importe2 + "€");
-Unyka.WriteText("Total: " + importetotal + "€", TextAlign.Right);
-Unyka.WriteText("Efectivo: " + importeefectivo + "€", TextAlign.Right);
-Unyka.WriteText("Tarjeta: " + importetarjeta + "€", TextAlign.Right);
+Unyka.WriteText(producto);
+Unyka.WriteText($"          3 x {importe:c2} = {importe:c2}");
+Unyka.WriteText(producto2);
+Unyka.WriteText($"          3 x {importe2:c2} = {importe2:c2}");
+
+
+Unyka.WriteText("Total: " + $"{importetotal:c2}", TextAlign.Right);
+Unyka.WriteText("Efectivo: " + $"{importeefectivo:c2}", TextAlign.Right);
+Unyka.WriteText("Tarjeta: " + $"{importetarjeta:c2}", TextAlign.Right);
 Unyka.EmptyLines(1);
-Unyka.WriteTaxLine(2.00m, 3.50m, 0.07m, 3.57m);
+Unyka.WriteTaxLine(21m, 123.57m);
 Unyka.EmptyLines(1);
-Unyka.WriteText("Atendido por: " + vendedor);
-Unyka.WriteCentered("Gracias por su visita.");
+Unyka.WriteText("Le atendió " + vendedor);
+Unyka.WriteText("Gracias por su visita.\n\n", TextAlign.Center);
 Unyka.CutPaper();
 
 

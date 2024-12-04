@@ -5,7 +5,7 @@ namespace Idearia.Pos.TicketPrinter
 {
     public class RawPrinterHelper
     {
-        internal static string _printerName;
+        public static string _printerName;
 
         [StructLayout(LayoutKind.Sequential, CharSet = CharSet.Ansi)]
         public class DOCINFOA
@@ -68,7 +68,9 @@ namespace Idearia.Pos.TicketPrinter
                 .Replace("é", "e")
                 .Replace("í", "i")
                 .Replace("ó", "o")
-                .Replace("ú", "u");
+                .Replace("ú", "u")
+                .Replace("ñ", "n")
+                .Replace("@", "·");
             buffer += szString;
             return true;
         }
