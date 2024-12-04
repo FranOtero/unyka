@@ -3,7 +3,7 @@ using System.Runtime.InteropServices;
 using System.Text;
 namespace Idearia.Pos.TicketPrinter
 {
-    internal class RawPrinterHelper
+    public class RawPrinterHelper
     {
         internal static string _printerName;
 

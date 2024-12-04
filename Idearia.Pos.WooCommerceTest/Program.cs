@@ -5,11 +5,23 @@ string printerName = "POS-80C";
 
 
 Unyka.SetName(printerName);
-Unyka.WriteTitle("O BOTICARIO");
-Unyka.WriteCentered("DFDASAFS");
-Unyka.WriteText("Dirección, código postal");
-Unyka.WriteText("CIF");
-Unyka.WriteText("teléfono");
+//Unyka.WriteText("Caja 1");
+//Unyka.WriteText("Caja 1");
+//Unyka.WriteText("\n\n\n");
+//Unyka.WriteText("Caja 1");
+//Unyka.WriteText("Caja 1");
+//Unyka.WriteText("Caja 1");
+
+////Unyka.WriteTitle("O BOTICARIO");
+////Unyka.WriteCentered("DFDASAFS");
+////Unyka.WriteText("Dirección, código postal");
+////Unyka.WriteText("CIF");
+////Unyka.WriteText("teléfono");
+Unyka.WriteText("Caja 1");
+RawPrinterHelper.SendStringToPrinter("\n\n\n");
+Unyka.WriteText("Caja 2");
+RawPrinterHelper.SendStringToPrinter("\n\n\n");
+//RawPrinterHelper.SendStringToPrinter(" ");
 Unyka.CutPaper();
 
 

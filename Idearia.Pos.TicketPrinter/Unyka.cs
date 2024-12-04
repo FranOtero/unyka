@@ -34,12 +34,12 @@ namespace Idearia.Pos.TicketPrinter
 
         public static void WriteText(string v)
         {
-            
+
             RawPrinterHelper.SendStringToPrinter(v + "\n");
         }
         public static void CutPaper()
         {
-            RawPrinterHelper.SendStringToPrinter("\n\n\n"); // ESC i
+            RawPrinterHelper.SendStringToPrinter("\n\n\n");
             RawPrinterHelper.SendStringToPrinter("\x1B\x69"); // ESC i
         }
     }
