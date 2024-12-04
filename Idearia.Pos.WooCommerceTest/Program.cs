@@ -23,8 +23,6 @@ Unyka.WriteText("Descripción", "importe");
 Unyka.WriteText(producto, importe + "€");
 Unyka.WriteText("", TextAlign.Right);
 
-
-
 Unyka.CutPaper();
 
 
