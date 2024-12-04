@@ -3,7 +3,7 @@ using System.Runtime.InteropServices;
 using System.Text;
 namespace Idearia.Pos.TicketPrinter
 {
-    public class RawPrinterHelper
+    internal class RawPrinterHelper
     {
         [StructLayout(LayoutKind.Sequential, CharSet = CharSet.Ansi)]
         public class DOCINFOA

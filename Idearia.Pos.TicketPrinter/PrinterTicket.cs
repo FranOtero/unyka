@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace Idearia.Pos.TicketPrinter
 {
-    public class PrinterTicket(Graphics g)
+    internal class PrinterTicket(Graphics g)
     {
         System.Drawing.Font font = new Font("Ticketing", 10);
         const int minX = 5;
